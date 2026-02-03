@@ -98,7 +98,7 @@ class GoldenEye(object):
                 error("Failed to start worker {0}".format(i))
                 pass 
 
-        print "Initiating monitor"
+        print("Initiating monitor")
         self.monitor()
 
     def stats(self):
