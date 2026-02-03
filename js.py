@@ -65,7 +65,7 @@ class GoldenEye(object):
 
     def exit(self):
         self.stats()
-        print "Shutting down GoldenEye"
+        print("Shutting down")
 
     def __del__(self):
         self.exit()
@@ -73,16 +73,16 @@ class GoldenEye(object):
     def printHeader(self):
 
         # Taunt!
-        print "GoldenEye firing!"
+        print("Attack launched!")
 
     # Do the fun!
     def fire(self):
 
         self.printHeader()
-        print "Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets)
+        print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets"")
 
         if DEBUG:
-            print "Starting {0} concurrent Laser workers".format(self.nr_workers)
+            print("Starting {0} concurrent Laser workers".format(self.nr_workers)"))
 
         # Start workers
         for i in range(int(self.nr_workers)):
