@@ -126,9 +126,7 @@ class Js(object):
                         worker.join(JOIN_TIMEOUT)
                     else:
                         self.workersQueue.remove(worker)
-
-                self.stats()
-                self._popen.terminate()
+                        self.stats()
 
             except (KeyboardInterrupt, SystemExit):
                 print("CTRL+C received. Killing all workers")
