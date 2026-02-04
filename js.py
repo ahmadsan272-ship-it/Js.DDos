@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from multiprocessing import Process, Manager
-impor urllib3 
+import urllib3 
 from urllib.parse import urlparse, ssl
 import sys, getopt, random, time
 import requests
