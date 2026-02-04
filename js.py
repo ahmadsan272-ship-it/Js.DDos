@@ -140,12 +140,12 @@ class Js(object):
                         print("Killing worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
-                    except Exception:
-                        pass # silently ignore
-                if DEBUG:
-                    raise
-                else:
-                    pass
+            except Exception:
+                    pass # silently ignore
+                    if DEBUG:
+                        raise
+                    else:
+                        pass
 
     
 ####
