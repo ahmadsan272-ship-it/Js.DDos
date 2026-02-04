@@ -135,7 +135,7 @@ class GoldenEye(object):
                             print("Killing worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
-                    except Exception, ex:
+                    except (Exception, ex):
                         pass # silently ignore
                 if DEBUG:
                     raise
