@@ -238,7 +238,7 @@ class Laser(Process):
     def run(self):
 
         if DEBUG:
-            print "Starting worker {0}".format(self.name)
+            print("Starting worker {0}".format(self.name))
 
         while self.runnable:
 
@@ -409,19 +409,19 @@ class Laser(Process):
 ####
 
 def usage():
-    print
-    print '-----------------------------------------------------------------------------------------------------------'
-    print ' USAGE: ./js.py <url> [OPTIONS]'
-    print
-    print ' OPTIONS:'
-    print '\t Flag\t\t\tDescription\t\t\t\t\t\tDefault'
-    print '\t -w, --workers\t\tNumber of concurrent workers\t\t\t\t(default: {0})'.format(DEFAULT_WORKERS)
-    print '\t -s, --sockets\t\tNumber of concurrent sockets\t\t\t\t(default: {0})'.format(DEFAULT_SOCKETS)
-    print '\t -m, --method\t\tHTTP Method to use \'get\' or \'post\'  or \'random\'\t\t(default: get)'
-    print '\t -d, --debug\t\tEnable Debug Mode [more verbose output]\t\t\t(default: False)'
-    print '\t -h, --help\t\tShows this help'
-    print '-----------------------------------------------------------------------------------------------------------'
-
+    print("""
+    -----------------------------------------------------------------------------------------------------------
+      USAGE: ./js.py <url> [OPTIONS]
+    
+      OPTIONS:
+     \t Flag\t\t\tDescription\t\t\t\t\t\tDefault
+     \t -w, --workers\t\tNumber of concurrent workers\t\t\t\t(default: {0})'.format(DEFAULT_WORKERS)
+     \t -s, --sockets\t\tNumber of concurrent sockets\t\t\t\t(default: {0})'.format(DEFAULT_SOCKETS)
+     \t -m, --method\t\tHTTP Method to use \'get\' or \'post\'  or \'random\'\t\t(default: get)
+     \t -d, --debug\t\tEnable Debug Mode [more verbose output]\t\t\t(default: False)
+     \t -h, --help\t\tShows this help
+     -----------------------------------------------------------------------------------------------------------
+     """)
     
 def error(msg):
     # print help information and exit:
