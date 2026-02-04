@@ -276,7 +276,7 @@ class Laser(Process):
                     pass # silently ignore
 
         if DEBUG:
-            print "Worker {0} completed run. Sleeping...".format(self.name)
+            print("Worker {0} completed run. Sleeping...".format(self.name))
             
     def closeConnections(self):
         for conn in self.socks:
