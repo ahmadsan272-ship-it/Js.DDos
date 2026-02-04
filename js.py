@@ -126,9 +126,11 @@ class Js(object):
                         worker.join(JOIN_TIMEOUT)
                     else:
                         self.workersQueue.remove(worker)
-                        self.stats()
-
+                        
+                self.stats()
+                
             except (KeyboardInterrupt, SystemExit):
+                self.terminate()
                 print("CTRL+C received. Killing all workers")
                 for worker in self.workersQueue:
                     try:
@@ -485,7 +487,7 @@ def main():
 
         jalsu.fire()
 
-    except (getopt.GetoptError,err):
+    except (getopt.GetoptError):
 
         # print help information and exit:
         sys.stderr.write(str(err))
