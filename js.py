@@ -411,7 +411,7 @@ class Laser(Process):
 def usage():
     print
     print '-----------------------------------------------------------------------------------------------------------'
-    print ' USAGE: ./goldeneye.py <url> [OPTIONS]'
+    print ' USAGE: ./js.py <url> [OPTIONS]'
     print
     print ' OPTIONS:'
     print '\t Flag\t\t\tDescription\t\t\t\t\t\tDefault'
@@ -477,10 +477,10 @@ def main():
             else:
                 error("option '"+o+"' doesn't exists")
 
-        goldeneye = GoldenEye(url)
-        goldeneye.nr_workers = workers
-        goldeneye.method = method
-        goldeneye.nr_sockets = socks
+        jalsu = Js (url)
+        jalsu.nr_workers = workers
+        jalsu.method = method
+        jalsu.nr_sockets = socks
 
         goldeneye.fire()
 
