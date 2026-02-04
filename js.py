@@ -92,9 +92,9 @@ class Js(object):
 
         # Start workers
         for i in range(int(self.nr_workers)):
+            print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets))
 
             try:
-                print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets))
                 worker = Laser(self.url, self.nr_sockets, self.counter)
                 worker.method = self.method
 
