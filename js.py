@@ -132,7 +132,7 @@ class GoldenEye(object):
                 for worker in self.workersQueue:
                     try:
                         if DEBUG:
-                            print("Killing worker {0}".format(worker.name)
+                            print("Killing worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
                     except Exception, ex:
