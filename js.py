@@ -132,8 +132,8 @@ class Js(object):
                 self.stats()
 
             except (KeyboardInterrupt, SystemExit):
-                    if self._popen is not None:
-                       self._popen.terminate()
+                     if self._popen is not None:
+                        self._popen.terminate()
                     else:
                         print("CTRL+C received. Killing all workers")
             try:        
