@@ -130,7 +130,6 @@ class Js(object):
                 self.stats()
                 
             except (KeyboardInterrupt, SystemExit):
-                self.terminate()
                 print("CTRL+C received. Killing all workers")
                 for worker in self.workersQueue:
                     try:
@@ -218,7 +217,6 @@ class Laser(Process):
             ]
 
     def __del__(self):
-        self.stop()
 
 
     #builds random ascii string
@@ -388,7 +386,6 @@ class Laser(Process):
     def stop(self):
         self.runnable = False
         self.closeConnections()
-        self.terminate()
 
     # Counter Functions
     def incCounter(self):
