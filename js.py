@@ -33,10 +33,10 @@ DEFAULT_WORKERS=50
 DEFAULT_SOCKETS=30
 
 ####
-# GoldenEye Class
+# Js Class
 ####
 
-class GoldenEye(object):
+class Js(object):
 
     # Counters
     counter = [0, 0]
