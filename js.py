@@ -205,10 +205,6 @@ class Laser(Process):
         ]
 
     
-    def __del__(self):
-        self.stop()
-        
-
     #builds random ascii string
     def buildblock(self, size):
         out_str = ''
