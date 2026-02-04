@@ -5,6 +5,7 @@ import ssl
 from urllib.parse import urlparse
 import requests
 import sys, getopt, random, os
+import http
 HTTPCLIENT = http.client
 
 
