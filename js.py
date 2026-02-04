@@ -482,9 +482,9 @@ def main():
         jalsu.method = method
         jalsu.nr_sockets = socks
 
-        goldeneye.fire()
+        jalsu.fire()
 
-    except getopt.GetoptError, err:
+    except (getopt.GetoptError, err):
 
         # print help information and exit:
         sys.stderr.write(str(err))
