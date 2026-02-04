@@ -79,13 +79,12 @@ class Js(object):
 
         # Taunt!
         print("Attack launched!")
-        print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets))
         
     # Do the fun!
     def fire(self):
 
         self.printHeader()
-        print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets))
+        print("Hitting webserver in mode {0} with {1} workers running {2} connections each".format(self.method, self.nr_workers, self.nr_sockets)"")
 
         if DEBUG:
             print("Starting {0} concurrent Laser workers".format(self.nr_workers))
