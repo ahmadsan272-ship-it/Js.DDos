@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from multiprocessing import Process, Manager
-import urlparse, ssl
+from urllib.parse import urlparse, ssl
 import sys, getopt, random, time
 
 # Python version-specific 
