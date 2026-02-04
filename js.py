@@ -1,10 +1,12 @@
 #!/usr/bin/env python
-from multiprocessing import Process, Manager
+from multiprocessing import Process, Manager, Pool
 import urllib3 
 import ssl
 from urllib.parse import urlparse
-import sys, getopt, random, time
 import requests
+import sys, getopt, random, os
+HTTPCLIENT = http.client
+
 
 # Python version-specific 
 if  sys.version_info < (3,12):
@@ -203,6 +205,9 @@ class Laser(Process):
             'http://www.yandex.com/',
             'http://' + self.host + '/'
         ]
+
+    def __del__(self):
+        self.stop()
 
     
     #builds random ascii string
