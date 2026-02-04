@@ -134,10 +134,10 @@ class Js(object):
                        self._popen.terminate()
                     else:
                         print("CTRL+C received. Killing all workers")
-                        for worker in self.workersQueue:
-                    try:
-                        if DEBUG:
-                            print("Killing worker {0}".format(worker.name))
+            try:        
+                for worker in self.workersQueue:
+                    if DEBUG:
+                        print("Killing worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
                     except Exception:
