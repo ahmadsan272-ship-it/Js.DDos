@@ -206,8 +206,8 @@ class Laser(Process):
             'http://' + self.host + '/'
         ]
 
-    def __del__(self):
-        self.stop()
+        def __del__(self):
+            self.stop()
 
     
     #builds random ascii string
