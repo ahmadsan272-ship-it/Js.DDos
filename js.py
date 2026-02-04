@@ -6,12 +6,11 @@ import sys, getopt, random, time
 import requests
 
 # Python version-specific 
-if  sys.version_info < (3,0):
-    # Python 2.x
+if  sys.version_info < (3,12):
     import httplib
     HTTPCLIENT = httplib
 else:
-    # Python 3.x
+    # Python 3.12
     import http.client
     HTTPCLIENT = http.client
 
