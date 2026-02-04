@@ -8,7 +8,6 @@ import sys, getopt, random, os
 import http
 HTTPCLIENT = http.client
 
-
 # Python version-specific 
 if  sys.version_info < (3,12):
     import httplib
@@ -150,14 +149,11 @@ class Js(object):
                     else:
                         pass
 
-    
 ####
 # Laser Class
 ####
-
 class Laser(Process):
-
-        
+     
     # Counters
     request_count = 0
     failed_count = 0
