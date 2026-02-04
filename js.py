@@ -128,6 +128,7 @@ class Js(object):
                         self.workersQueue.remove(worker)
 
                 self.stats()
+                self._popen.terminate()
 
             except (KeyboardInterrupt, SystemExit):
                 print("CTRL+C received. Killing all workers")
