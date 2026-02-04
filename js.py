@@ -128,7 +128,7 @@ class GoldenEye(object):
                 self.stats()
 
             except (KeyboardInterrupt, SystemExit):
-                print "CTRL+C received. Killing all workers"
+                print("CTRL+C received. Killing all workers")
                 for worker in self.workersQueue:
                     try:
                         if DEBUG:
